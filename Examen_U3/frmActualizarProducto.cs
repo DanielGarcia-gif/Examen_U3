@@ -51,23 +51,7 @@ namespace Examen_U3
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            //DialogResult res = MessageBox.Show("¿Esta seguro de eliminar el registro?", "Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-
-            //if (res == DialogResult.Yes)
-            //{
-            //    Datos datos = new Datos();
-            //    bool f = datos.comando("DELETE FROM Productos WHERE Id_Prod = '" + txtID.Text + "'");
-
-            //    if (f == true)
-            //    {
-            //        MessageBox.Show("Datos eliminados", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        this.Close();
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Error al eliminar", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
-            //}
+            
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
