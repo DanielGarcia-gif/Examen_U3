@@ -38,9 +38,9 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.btnInsertar = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.cmsControl.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -54,6 +54,7 @@
             this.dgvProductos.ContextMenuStrip = this.cmsControl;
             this.dgvProductos.Location = new System.Drawing.Point(15, 124);
             this.dgvProductos.Name = "dgvProductos";
+            this.dgvProductos.ReadOnly = true;
             this.dgvProductos.Size = new System.Drawing.Size(553, 253);
             this.dgvProductos.TabIndex = 0;
             this.dgvProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductos_CellContentClick);
@@ -130,6 +131,16 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Buscar:";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Examen_U3.Properties.Resources.device;
+            this.pictureBox1.Location = new System.Drawing.Point(476, 10);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(69, 67);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
             // btnImprimir
             // 
             this.btnImprimir.BackgroundImage = global::Examen_U3.Properties.Resources.printer;
@@ -151,16 +162,6 @@
             this.btnInsertar.TabIndex = 1;
             this.btnInsertar.UseVisualStyleBackColor = true;
             this.btnInsertar.Click += new System.EventHandler(this.btnInsertar_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Examen_U3.Properties.Resources.device;
-            this.pictureBox1.Location = new System.Drawing.Point(476, 10);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(69, 67);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
             // 
             // frmProductos
             // 
