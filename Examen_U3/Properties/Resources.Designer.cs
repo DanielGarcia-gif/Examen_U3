@@ -93,6 +93,16 @@ namespace Examen_U3.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Logotipo_ELK_2025_Mesa_de_trabajo_1_2__1_ {
+            get {
+                object obj = ResourceManager.GetObject("Logotipo-ELK-2025_Mesa-de-trabajo-1-2 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap plus {
             get {
                 object obj = ResourceManager.GetObject("plus", resourceCulture);

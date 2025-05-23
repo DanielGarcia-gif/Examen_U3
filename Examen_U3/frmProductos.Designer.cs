@@ -52,9 +52,9 @@
             // 
             this.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProductos.ContextMenuStrip = this.cmsControl;
-            this.dgvProductos.Location = new System.Drawing.Point(0, 124);
+            this.dgvProductos.Location = new System.Drawing.Point(15, 124);
             this.dgvProductos.Name = "dgvProductos";
-            this.dgvProductos.Size = new System.Drawing.Size(581, 253);
+            this.dgvProductos.Size = new System.Drawing.Size(553, 253);
             this.dgvProductos.TabIndex = 0;
             this.dgvProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductos_CellContentClick);
             // 
@@ -107,16 +107,17 @@
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.panel2.Controls.Add(this.btnImprimir);
             this.panel2.Controls.Add(this.btnInsertar);
-            this.panel2.Location = new System.Drawing.Point(587, 98);
+            this.panel2.Location = new System.Drawing.Point(587, 90);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(115, 282);
+            this.panel2.Size = new System.Drawing.Size(115, 290);
             this.panel2.TabIndex = 4;
             // 
             // txtBuscar
             // 
+            this.txtBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtBuscar.Location = new System.Drawing.Point(58, 98);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(510, 20);
+            this.txtBuscar.Size = new System.Drawing.Size(497, 20);
             this.txtBuscar.TabIndex = 5;
             this.txtBuscar.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -165,11 +166,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(704, 378);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvProductos);
             this.Name = "frmProductos";
             this.Text = "Productos";
