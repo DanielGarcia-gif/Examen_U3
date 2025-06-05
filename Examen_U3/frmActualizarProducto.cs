@@ -12,6 +12,8 @@ namespace Examen_U3
 {
     public partial class frmActualizarProducto : Form
     {
+        Datos dt = new Datos();
+        int id = 0;
         public frmActualizarProducto(string id, string stock, string nombre, 
                                      string precio, string descripcion)
         {
@@ -28,25 +30,39 @@ namespace Examen_U3
 
         }
 
-        private void btnActualizar_Click(object sender, EventArgs e)
+        private void editarProd()
         {
-            Datos datos = new Datos();
-            bool f = datos.comando("UPDATE Productos " +
-                                    "SET Stock = " + txtStock.Text +
-                                    ", Nombre = '" + txtNombre.Text +
-                                    "', Precio = " + txtPrecio.Text +
-                                    ", Descripcion = '" + txtDescripcion.Text +
-                                    "' WHERE id_Prod = " + txtID.Text);
 
-            if (f == true)
+            // Verificar si el producto todavía existe
+            string checkSql = $"SELECT COUNT(*) FROM Productos WHERE IdProducto = {id}";
+            DataSet ds = dt.consulta(checkSql);
+
+            if (ds == null || ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0 || ds.Tables[0].Rows[0][0].ToString() == "0")
             {
-                MessageBox.Show("Datos actualizados", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Este producto ya no existe. Otro usuario pudo haberlo eliminado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close(); // Cierra el formulario 
+                return;
+            }
+
+            string sql = "Update Productos set Nombre='" + txtNombre.Text + "',Precio=" + txtPrecio.Text +
+                ",Descripcion='" + txtDescripcion.Text + "',Stock=" + txtStock.Text + " where IdProducto=" + id;
+            bool v = dt.ejecutarComando(sql);
+            if (v)
+            {
+                MessageBox.Show("Producto Editado");
+                bool v1 = dt.ejecutarMensaje("EDITAR", txtNombre.Text);
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Error al actualizar", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al editar producto");
             }
+
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            editarProd();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)

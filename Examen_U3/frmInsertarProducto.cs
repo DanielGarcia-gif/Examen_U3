@@ -10,32 +10,36 @@ using System.Windows.Forms;
 
 namespace Examen_U3
 {
+
     public partial class frmInsertarProducto : Form
     {
+        Datos datos = new Datos();
+        int id = 0;
         public frmInsertarProducto()
         {
             InitializeComponent();
         }
 
-        private void btnInsertar_Click(object sender, EventArgs e)
+        private void agregarProd()
         {
-            Datos datos = new Datos();
-            bool f = datos.comando("INSERT INTO Productos  (Stock, Nombre, Precio, Descripcion) values " +
-                                   "(" + txtStock.Text +
-                                   ",'" + txtNombre.Text.Replace("'", "''") +
-                                   "'," + txtPrecio.Text +
-                                   ",'" + txtDescripcion.Text +
-                                   "')");
-
-            if (f == true)
+            string sql = "Insert into Productos (Nombre,Precio,Descripcion,Stock) Values ('" + txtNombre.Text + "'," +
+                "" + txtPrecio.Text + ",'" + txtDescripcion.Text + "'," + txtStock.Text + ")";
+            bool v = datos.ejecutarComando(sql);
+            if (v)
             {
-                MessageBox.Show("Datos insertados", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Producto Agregado");
+                bool v1 = datos.ejecutarMensaje("AGREGAR", txtNombre.Text);
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Error al insertar", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al agregar producto");
             }
+        }
+
+        private void btnInsertar_Click(object sender, EventArgs e)
+        {
+            agregarProd();
         }
 
         private void btnVolver_Click(object sender, EventArgs e)

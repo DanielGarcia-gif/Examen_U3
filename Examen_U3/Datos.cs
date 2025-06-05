@@ -5,28 +5,47 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
+using WebSocketSharp;
+
 
 namespace Examen_U3
 {
     internal class Datos
     {
-        String cadenaConexion = "Data Source=FOFY;integrated security=true;initial catalog=ExamenU3;encrypt=false";
-
+        String cadenaConexion = ConfigurationManager.ConnectionStrings["MiConexionSQL"].ConnectionString;
         SqlConnection conexion;
+        WebSocket ws;
 
         private SqlConnection abrirConexion()
         {
             try
             {
                 conexion = new SqlConnection(cadenaConexion);
-                conexion.Open(); //Abrir conexion a BD
+                conexion.Open(); // abrir conexion a bd
                 return conexion;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al abrir la conexion" + ex.Message);
+                Console.WriteLine("Error al abrir conexion: " + ex.Message);
                 return null;
             }
+        }
+
+        public bool prueba()
+        {
+            try
+            {
+                abrirConexion();
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("Error al abrir conexion: " + ex.Message);
+                return false;
+            }
+
         }
 
         public DataSet consulta(string consulta)
@@ -46,12 +65,26 @@ namespace Examen_U3
             }
         }
 
-        public bool comando(string consulta)
+        public Datos()
         {
             try
             {
-                SqlCommand cmd = new SqlCommand(consulta, abrirConexion());
-                cmd.ExecuteNonQuery();
+                ws = new WebSocket("ws://192.168.100.55:8080/notify"); // Cambia por la IP del servidor
+                ws.Connect();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("No se pudo conectar al WebSocket para notificaciones: " + ex.Message);
+            }
+        }
+
+        public bool ejecutarComando(string cmdText)
+        {
+            try
+            {
+                SqlCommand comando = new SqlCommand(cmdText, abrirConexion());
+                comando.ExecuteNonQuery();
+
                 return true;
             }
             catch (Exception ex)
@@ -61,12 +94,20 @@ namespace Examen_U3
             }
         }
 
-        public bool ejecutarMando(string cmd)
+        public bool ejecutarMensaje(string accion, string nombreProducto)
         {
             try
             {
-                SqlCommand comando = new SqlCommand(cmd, abrirConexion());
-                comando.ExecuteNonQuery();
+
+                if (!string.IsNullOrEmpty(accion) && !string.IsNullOrEmpty(nombreProducto))
+                {
+                    // Envía la acción + producto + nombre usuario 
+                    WebSocketClient.EnviarMensaje($"{accion}:{nombreProducto}");
+                }
+                else
+                {
+                    WebSocketClient.EnviarMensaje("REFRESH");
+                }
                 return true;
             }
             catch (Exception ex)
