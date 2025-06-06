@@ -22,7 +22,7 @@ namespace Examen_U3
             rtbHistorial.ReadOnly = true;
             this.usuario = usuario;
 
-            WebSocketClient.Inicializar("ws://192.168.100.55:8080/notify", usuario); // IP del servidor WebSocket
+            WebSocketClient.Inicializar("ws://10.19.204.167:8181/notify", usuario); // IP del servidor WebSocket
 
             WebSocketClient.ws.OnMessage += (sender, e) =>
             {
@@ -108,9 +108,8 @@ namespace Examen_U3
         private void eliminar_Click(object sender, EventArgs e)
         {
             int i = dgvProductos.CurrentRow.Index;
-            DialogResult f = MessageBox.Show("¿Eliminar Producto '" + dgvProductos.Rows[i].Cells[2].Value + "'?");
-
-            if (f == DialogResult.Yes)
+            DialogResult result = MessageBox.Show("¿Está seguro de que desea eliminar el producto '" + dgvProductos.Rows[i].Cells[1].Value + "'?", "Eliminar Producto", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
             {
                 string nombreProd = dgvProductos.Rows[i].Cells[1].Value.ToString();
                 string sql = "Delete from Productos where Id_Prod=" + dgvProductos.Rows[i].Cells[0].Value;
@@ -126,7 +125,7 @@ namespace Examen_U3
                     MessageBox.Show("Error al eliminar producto");
                 }
             }
-            else if (f == DialogResult.No)
+            else if (result == DialogResult.No)
             {
                 MessageBox.Show("Eliminación cancelada");
             }
