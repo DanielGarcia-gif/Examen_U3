@@ -22,7 +22,7 @@ namespace Examen_U3
             rtbHistorial.ReadOnly = true;
             this.usuario = usuario;
 
-            WebSocketClient.Inicializar("ws://10.19.204.167:8181/notify", usuario); // IP del servidor WebSocket
+            WebSocketClient.Inicializar("ws://192.168.100.55:8080/notify", usuario); // IP del servidor WebSocket
 
             WebSocketClient.ws.OnMessage += (sender, e) =>
             {
